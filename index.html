@@ -21,25 +21,32 @@
     z-index: -2;
   }
 
-  .aurora-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3em;
-    text-align: center;
-    margin-top: 40px;
-    background: linear-gradient(45deg, #e6fb04, #ff6600, #00ffff, #ff00ff, #e6fb04);
-    background-size: 1000% 1000%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: aurora 10s linear infinite;
-    text-shadow: 0 0 10px rgba(255,255,255,0.3);
-  }
+/* Collapsible Astronomy Quote */
+    .toggle-btn {
+      background: none;
+      border: 1px solid #f9f871;
+      padding: 8px 12px;
+      color: #f9f871;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-family: 'Orbitron', sans-serif;
+    }
 
-  @keyframes aurora {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-</style>
+    .collapsible {
+      display: none;
+      opacity: 0;
+ transition: opacity 0.5s ease-in-out;
+    }
+
+    .fade-in {
+      display: block !important;
+      opacity: 1;
+    }
+
+
+ </style>
+
 
 <canvas id="space"></canvas>
 <script>
