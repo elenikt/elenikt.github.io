@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eleni Koutsiona - Astrophysics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: radial-gradient(circle at top left, #0d1b2a, #000);
+      color: #e0e0e0;
+      max-width: 900px;
+      margin: auto;
+      padding: 30px;
+      line-height: 1.7;
+    }
+
+    h1, h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: #f9f871;
+    }
+
+    a {
+      color: #9bd3ff;
+    }
+
+    .profile-pic {
+      float: right;
+      margin-left: 20px;
+      border-radius: 10px;
+      width: 160px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .section {
+      margin-top: 50px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 10px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.02);
+    }
+
+    .toggle-btn {
+      background: none;
+      border: 1px solid #f9f871;
+      padding: 8px 12px;
+      color: #f9f871;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .collapsible {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .footer {
+      margin-top: 60px;
+      font-size: 0.9em;
+      text-align: center;
+      color: #888;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .gallery img {
+    width: 100%;
+    max-height: 180px; /* ↓ changed from 300px */
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    }
+
+    .gallery-caption {
+      font-size: 0.9em;
+      color: #aaa;
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    .lightbox-overlay {
+      position: fixed;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+    }
+
+    .lightbox-overlay img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 40px;
+      color: #fff;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Eleni Koutsiona</h1>
+  <h2>Master’s Student in Astrophysics</h2>
+  <img src="myphoto.jpeg" alt="Eleni's photo" class="profile-pic" />
+
+  <p>
+    Hello! My name is Eleni. I come from Greece and I did my Bachelor's in Physics at the University of Crete, before moving to Germany where I am currently pursuing a Master's in Astrophysics at Heidelberg University. My research so far has mostly been focused on Luminous Infrared Galaxies, but I am also interested in transient astronomy, black holes, and applications of machine learning in astrophysics.
+  </p>
+
+  <div class="section">
+    <h2>🌌 Research Interests</h2>
+    <div class="card">
+      <ul>
+        <li>Luminous Infrared Galaxies (LIRGs)</li>
+        <li>Supernovae & transient phenomena</li>
+        <li>Black Holes</li>
+        <li>Dust attenuation</li>
+        <li>Machine Learning in Astrophysics</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+  <h2>📜 Selected Work</h2>
+  <div class="card">
+    <ul>
+      <li>
+        Mandarakas, N., et al. <br />
+        <em>Zero-polarization candidate regions for calibration of wide-field optical polarimeters.</em><br />
+        <strong>A&A</strong>, DOI: <a href="https://doi.org/10.1051/0004-6361/202348099" target="_blank">10.1051/0004-6361/202348099</a> · 
+        <a href="https://arxiv.org/abs/2312.06435" target="_blank">arXiv:2312.06435</a>
+      </li>
+      <br />
+      <li>
+        Kangas, T., et al. <br />
+        <em>The enigmatic two-peaked stripped-envelope SN 2023aew.</em><br />
+        Submitted to <strong>A&A</strong>, DOI: <a href="https://doi.org/10.1051/0004-6361/202449420" target="_blank">10.1051/0004-6361/202449420</a> · 
+        <a href="https://arxiv.org/abs/2312.06435" target="_blank">arXiv:2312.06435</a>
+      </li>
+    </ul>
+    <p>For more, see my <a href="Your-CV.pdf" target="_blank">CV</a>.</p>
+  </div>
+</div>
+
+  <div class="section">
+    <h2>📂 CV</h2>
+    <div class="card">
+      <p>You can download my CV <a href="Your-CV.pdf" target="_blank">here</a>.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📫 Contact</h2>
+    <div class="card">
+      <p>Email: <a href="mailto:koutsionaeleni@gmail.com">koutsionaeleni@gmail.com</a></p>
+      <p>GitHub: <a href="https://github.com/elenikt" target="_blank">elenikt</a></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🔭 Fun Extra</h2>
+    <button class="toggle-btn" onclick="toggleFun()">Show astronomy quote</button>
+    <div id="funQuote" class="collapsible card">
+      <p>“Somewhere, something incredible is waiting to be known.” — Carl Sagan</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📸 Astronomy Photo Gallery</h2>
+    <div class="gallery">
+      <div>
+        <a onclick="openLightbox('images/milkyway.jpeg')">
+          <img src="images/milkyway.jpeg" alt="Milky Way from Skinakas">
+        </a>
+        <div class="gallery-caption">Lighting up the Milky Way – Skinakas Observatory</div>
+      <div>
+        <a onclick="openLightbox('images/radio.jpeg')">
+          <img src="images/radio.jpeg" alt="radio telescope">
+        </a>
+        <div class="gallery-caption">20m Radio Telescope –  Amanogawa Galaxy Astronomy Research Center, Kagoshima </div>
+        <a onclick="openLightbox('images/okayama.jpeg')">
+          <img src="images/okayama.jpeg" alt="Okayama Seimei Telescope">
+        </a>
+        <div class="gallery-caption">Seimei 3.8m Telescope – Okayama Observatory</div>
+      </div>
+<a onclick="openLightbox('images/1.3m.jpeg')">
+          <img src="images/1.3m.jpeg" alt="Skinakas Telescope">
+        </a>
+        <div class="gallery-caption">1.3m Telescope – Skinakas Observatory</div>
+<a onclick="openLightbox('images/skinakas.jpeg')">
+          <img src="images/skinakas.jpeg" alt="Skinakas Milky Way">
+        </a>
+        <div class="gallery-caption">Sky full of stars – Skinakas Observatory</div>
+<a onclick="openLightbox('images/moon.jpg')">
+          <img src="images/moon.jpg" alt="The moon">
+        </a>
+        <div class="gallery-caption">The moon through the 1.3m telescope – Skinakas Observatory</div>
+    </div>
+  </div>
+
+  <!-- Lightbox Viewer -->
+  <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="Expanded view">
+  </div>
+
+  <div class="footer">
+    Last updated: May 2025 | Made with 💫 and HTML
+  </div>
+
+  <script>
+    function toggleFun() {
+      const quote = document.getElementById("funQuote");
+      quote.style.display = quote.style.display === "block" ? "none" : "block";
+    }
+
+    function openLightbox(imageSrc) {
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      lightbox.style.display = "flex";
+      lightboxImg.src = imageSrc;
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+  </script>
+</body>
+</html>
+
