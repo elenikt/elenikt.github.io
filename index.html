@@ -44,6 +44,40 @@
       opacity: 1;
     }
 
+/* Add this at the bottom of your existing style block */
+.lightbox-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  max-width: 90%;
+}
+
+.lightbox-inner {
+  text-align: center;
+}
+
+.lightbox-caption {
+  color: #ccc;
+  font-size: 1em;
+  margin-top: 10px;
+}
+
+.lightbox-arrow {
+  cursor: pointer;
+  font-size: 50px;
+  color: white;
+  padding: 20px;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+.lightbox-arrow:hover {
+  color: #f9f871;
+}
+
+
 
  </style>
 
@@ -193,12 +227,16 @@
       z-index: 9999;
     }
 
-    .lightbox-overlay img {
-      max-width: 90%;
-      max-height: 80%;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.3);
-    }
+.lightbox-overlay img {
+  max-width: 80vw;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  object-fit: contain;
+}
+
 
     .lightbox-close {
       position: absolute;
@@ -326,49 +364,57 @@
     <h2>📸 Astronomy Photo Gallery</h2>
     <div class="gallery">
       <div class="gallery-item">
-        <img src="images/radio.jpeg" onclick="openLightbox('images/radio.jpeg')" />
+        <img src="images/radio.jpeg" onclick="openLightbox(0)" />
         <div class="hover-caption">20m Radio Telescope – Amanogawa Galaxy Research Center</div>
       </div>
       <div class="gallery-item">
-        <img src="images/okayama.jpeg" onclick="openLightbox('images/okayama.jpeg')" />
+        <img src="images/okayama.jpeg" onclick="openLightbox(1)" />
         <div class="hover-caption">Seimei 3.8m Telescope – Okayama Observatory</div>
       </div>
       <div class="gallery-item">
-        <img src="images/1.3m.jpeg" onclick="openLightbox('images/1.3m.jpeg')" />
+        <img src="images/1.3m.jpeg" onclick="openLightbox(2)" />
         <div class="hover-caption">1.3m Telescope – Skinakas Observatory</div>
       </div>
       <div class="gallery-item">
-        <img src="images/milkyway.jpeg" onclick="openLightbox('images/milkyway.jpeg')" />
+        <img src="images/milkyway.jpeg" onclick="openLightbox(3)" />
         <div class="hover-caption">Lighting up the Milky Way – Skinakas Observatory</div>
       </div>
       <div class="gallery-item">
-        <img src="images/skinakas.jpeg" onclick="openLightbox('images/skinakas.jpeg')" />
+        <img src="images/skinakas.jpeg" onclick="openLightbox(4)" />
         <div class="hover-caption">Sky full of stars – Skinakas Observatory</div>
       </div>
       <div class="gallery-item">
-        <img src="images/moon.jpg" onclick="openLightbox('images/moon.jpg')" />
+        <img src="images/moon.jpg" onclick="openLightbox(5)" />
         <div class="hover-caption">The moon through the 1.3m telescope – Skinakas Observatory</div>
       </div>
       <div class="gallery-item">
-        <img src="images/myaurora.jpeg" onclick="openLightbox('images/myaurora.jpeg')" />
+        <img src="images/myaurora.jpeg" onclick="openLightbox(6)" />
         <div class="hover-caption">Aurora Borealis - Ulvik, Norway</div>
       </div>
       <div class="gallery-item">
-        <img src="images/dancing2.jpeg" onclick="openLightbox('images/dancing2.jpeg')" />
+        <img src="images/dancing2.jpeg" onclick="openLightbox(7)" />
         <div class="hover-caption">Also known as the dancing Northern Lights – Ulvik, Norway</div>
       </div>
       <div class="gallery-item">
-        <img src="images/underaurora.jpeg" onclick="openLightbox('images/underaurora.jpeg')" />
+        <img src="images/underaurora.jpeg" onclick="openLightbox(8)" />
         <div class="hover-caption">Directly under the Northern Lights – Ulvik, Norway</div>
       </div>
     </div>
   </div>
 
-  <!-- Lightbox Viewer -->
-  <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
-    <span class="lightbox-close">&times;</span>
-    <img id="lightbox-img" src="" alt="Expanded view">
+<!-- Enhanced Lightbox Viewer -->
+<div id="lightbox" class="lightbox-overlay" style="display: none;">
+  <div class="lightbox-arrow" id="prevArrow">&#10094;</div>
+  <div class="lightbox-content">
+    <div class="lightbox-inner">
+      <img id="lightbox-img" src="" alt="Expanded view" />
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
   </div>
+  <div class="lightbox-arrow" id="nextArrow">&#10095;</div>
+  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+</div>
+
 
   <div class="footer">
     Last updated: May 2025 | Made with 💫 and HTML
@@ -380,16 +426,83 @@
       quote.classList.toggle("fade-in");
     }
 
-    function openLightbox(imageSrc) {
-      const lightbox = document.getElementById("lightbox");
-      const lightboxImg = document.getElementById("lightbox-img");
-      lightbox.style.display = "flex";
-      lightboxImg.src = imageSrc;
-    }
 
-    function closeLightbox() {
-      document.getElementById("lightbox").style.display = "none";
+  const images = [
+    {
+      src: 'images/radio.jpeg',
+      caption: '20m Radio Telescope – Amanogawa Galaxy Research Center'
+    },
+    {
+      src: 'images/okayama.jpeg',
+      caption: 'Seimei 3.8m Telescope – Okayama Observatory'
+    },
+    {
+      src: 'images/1.3m.jpeg',
+      caption: '1.3m Telescope – Skinakas Observatory'
+    },
+    {
+      src: 'images/milkyway.jpeg',
+      caption: 'Lighting up the Milky Way – Skinakas Observatory'
+    },
+    {
+      src: 'images/skinakas.jpeg',
+      caption: 'Sky full of stars – Skinakas Observatory'
+    },
+    {
+      src: 'images/moon.jpg',
+      caption: 'The moon through the 1.3m telescope – Skinakas Observatory'
+    },
+    {
+      src: 'images/myaurora.jpeg',
+      caption: 'Aurora Borealis – Ulvik, Norway'
+    },
+    {
+      src: 'images/dancing2.jpeg',
+      caption: 'Also known as the dancing Northern Lights – Ulvik, Norway'
+    },
+    {
+      src: 'images/underaurora.jpeg',
+      caption: 'Directly under the Northern Lights – Ulvik, Norway'
     }
+  ];
+
+  let currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    const img = document.getElementById("lightbox-img");
+    const caption = document.getElementById("lightbox-caption");
+    img.src = images[index].src;
+    caption.textContent = images[index].caption;
+    document.getElementById("lightbox").style.display = "flex";
+  }
+
+  function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % images.length;
+    openLightbox(currentIndex);
+  }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    openLightbox(currentIndex);
+  }
+
+  document.getElementById("nextArrow").addEventListener("click", showNext);
+  document.getElementById("prevArrow").addEventListener("click", showPrev);
+
+  // Optional: enable keyboard navigation
+  document.addEventListener("keydown", function (e) {
+    if (document.getElementById("lightbox").style.display === "flex") {
+      if (e.key === "ArrowRight") showNext();
+      if (e.key === "ArrowLeft") showPrev();
+      if (e.key === "Escape") closeLightbox();
+    }
+  });
+
   </script>
 </body>
 </html>
