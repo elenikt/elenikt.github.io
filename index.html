@@ -288,6 +288,42 @@ form textarea:focus {
     opacity: 1;
     transform: translateY(0);
   }
+
+.toggle-btn {
+  background-color: transparent;
+  border: 1px solid #f9f871;
+  padding: 10px 20px;
+  color: #f9f871;
+  border-radius: 30px;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(249, 248, 113, 0.3);
+}
+.toggle-btn:hover {
+  background-color: #f9f871;
+  color: #000;
+  box-shadow: 0 0 15px rgba(249, 248, 113, 0.6);
+}
+
+#astronaut-companion {
+  position: fixed;
+  bottom: -20px;
+  right: -40px;
+  width: 240px; /* 3 times larger than original 60px */
+  transform: scaleX(-1); /* Flip horizontally */
+  animation: float 4s ease-in-out infinite;
+  z-index: 999;
+}
+
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+
 </style>
 
 <script>
@@ -369,6 +405,9 @@ form textarea:focus {
       <p>“Somewhere, something incredible is waiting to be known.” — Carl Sagan</p>
     </div>
   </div>
+
+<img src="images/astronaut1.png" alt="Astronaut" id="astronaut-companion" />
+
 
  <div class="section">
     <h2>📸 Astronomy Photo Gallery</h2>
@@ -526,6 +565,17 @@ form textarea:focus {
     </form>
   </div>
 </div>
+
+<script>
+  document.getElementById("astronaut-companion").addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth" // Smooth scroll to top
+    });
+  });
+</script>
+
+
 
  <div class="footer">
     Last updated: May 2025 | Made with 💫 and HTML
