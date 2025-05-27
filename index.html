@@ -44,7 +44,6 @@
       opacity: 1;
     }
 
-/* Add this at the bottom of your existing style block */
 .lightbox-content {
   display: flex;
   align-items: center;
@@ -77,6 +76,24 @@
   color: #f9f871;
 }
 
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #666;
+  color: #e0e0e0;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: #f9f871;
+  background: rgba(255, 255, 255, 0.1);
+}
 
 
  </style>
@@ -344,13 +361,6 @@
     </div>
   </div>
 
-  <div class="section">
-    <h2>📫 Contact</h2>
-    <div class="card">
-      <p>Email: <a href="mailto:eleni.koutsiona@stud.uni-heidelberg.de">eleni.koutsiona@stud.uni-heidelberg.de</a></p>
-      <p>GitHub: <a href="https://github.com/elenikt" target="_blank">elenikt</a></p>
-    </div>
-  </div>
 
   <div class="section">
     <h2>🔭 Fun Extra</h2>
@@ -414,11 +424,6 @@
   <div class="lightbox-arrow" id="nextArrow">&#10095;</div>
   <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
 </div>
-
-
-  <div class="footer">
-    Last updated: May 2025 | Made with 💫 and HTML
-  </div>
 
   <script>
     function toggleFun() {
@@ -502,7 +507,29 @@
       if (e.key === "Escape") closeLightbox();
     }
   });
-
   </script>
+
+<div class="section" id="contact">
+  <h2>📫 Contact Me</h2>
+  <div class="card">
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+      <label for="name">Name:</label><br />
+      <input type="text" id="name" name="name" required /><br /><br />
+
+      <label for="email">Email:</label><br />
+      <input type="email" id="email" name="_replyto" required /><br /><br />
+
+      <label for="message">Message:</label><br />
+      <textarea id="message" name="message" rows="5" required></textarea><br /><br />
+
+      <button type="submit" class="toggle-btn">Send</button>
+    </form>
+  </div>
+</div>
+
+ <div class="footer">
+    Last updated: May 2025 | Made with 💫 and HTML
+  </div>
+
 </body>
 </html>
