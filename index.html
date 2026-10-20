@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO & Verification -->
+  <title>Eleni Koutsiona | Astrophysics Researcher</title>
+  <meta name="description" content="Academic website of Eleni Koutsiona, astrophysics master's researcher at Heidelberg University and ESA Trainee. High-z galaxy evolution, AGN feedback, and observational spectroscopy.">
+  <meta name="author" content="Eleni Koutsiona">
+  <meta name="robots" content="index, follow">
+  <meta name="google-site-verification" content="FzBfX7M9LQV9f9VUuTRVNIzILlAsM_tZeAkOZ2YxdFU" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Eleni Koutsiona | Astrophysics">
+  <meta property="og:description" content="M.Sc. Researcher in Astrophysics at Heidelberg University & ESA Trainee.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://elenikt.github.io">
+  <meta property="og:image" content="https://elenikt.github.io/myphoto.jpeg">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Eleni Koutsiona",
+    "url": "https://elenikt.github.io",
+    "jobTitle": "Astrophysicist",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Heidelberg University"
+    },
+    "sameAs": [
+      "https://github.com/elenikt",
+      "https://www.linkedin.com/in/eleni-koutsiona-0067682a0/"
+    ]
+  }
+  </script>
+
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <style>
+    :root {
+      --bg-space: #070913;
+      --card-bg: rgba(15, 23, 42, 0.65);
+      --card-border: rgba(148, 163, 184, 0.12);
+      --card-hover-border: rgba(56, 189, 248, 0.4);
+      --accent-blue: #38bdf8;
+      --accent-cyan: #22d3ee;
+      --accent-glow: rgba(56, 189, 248, 0.2);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-space);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Fixed Starfield Canvas */
+    canvas#space {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* Atmospheric Nebula Banner */
+    .nebula-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 460px;
+      z-index: -1;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 10%, rgba(29, 78, 216, 0.28), transparent 70%),
+                  radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.2), transparent 60%),
+                  url('images/hubble.jpg') center top / cover no-repeat;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 20%, rgba(0, 0, 0, 0.7) 55%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 20%, rgba(0, 0, 0, 0.7) 55%, transparent 100%);
+      opacity: 0.85;
+    }
+
+    .container {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 60px 24px 85px;
+      position: relative;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      margin-bottom: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #ffffff;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 10px;
+    }
+
+    h2 i, h2 svg {
+      color: var(--accent-blue);
+      font-size: 1.2rem;
+    }
+
+    a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--accent-cyan);
+      text-decoration: underline;
+    }
+
+    /* Hero / Bio Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 50px;
+      padding: 20px 0 10px;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 2.7rem;
+      font-weight: 700;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #ffffff 40%, #bae6fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.08rem;
+      color: var(--accent-blue);
+      font-weight: 500;
+      margin: 8px 0 16px;
+    }
+
+    .hero-bio {
+      font-size: 0.98rem;
+      color: #cbd5e1;
+      margin-bottom: 22px;
+      line-height: 1.75;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid var(--card-border);
+      padding: 7px 16px;
+      border-radius: 999px;
+      color: var(--text-main);
+      font-size: 0.88rem;
+      font-weight: 500;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.25s ease;
+    }
+
+    .btn-pill:hover {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: var(--accent-blue);
+      text-decoration: none;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px var(--accent-glow);
+      color: #ffffff;
+    }
+
+    .profile-pic {
+      width: 175px;
+      height: 175px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.25), 0 10px 25px rgba(0, 0, 0, 0.6);
+      flex-shrink: 0;
+    }
+
+    /* Cards */
+    .section {
+      margin-top: 45px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+      transition: border-color 0.25s ease;
+    }
+
+    .card:hover {
+      border-color: var(--card-hover-border);
+    }
+
+    /* Research Focus Pills */
+    .pill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .interest-pill {
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: #e2e8f0;
+      font-size: 0.88rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .interest-pill:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent-blue);
+      transform: translateY(-1px);
+    }
+
+    .interest-pill i, .interest-pill svg {
+      color: var(--accent-cyan);
+      font-size: 0.82rem;
+    }
+
+    /* Refereed Publications */
+    .pub-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .pub-item {
+      padding-left: 16px;
+      border-left: 3px solid var(--accent-blue);
+    }
+
+    .pub-title {
+      font-weight: 600;
+      color: #ffffff;
+      font-size: 1.02rem;
+      margin-bottom: 2px;
+    }
+
+    .pub-authors {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+
+    .pub-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .pub-meta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ----------------------------------------------------
+       COMPACT HORIZONTAL FILMSTRIP GALLERY (Saves Height)
+    ---------------------------------------------------- */
+    .carousel-wrapper {
+      position: relative;
+      margin-top: 10px;
+    }
+
+    .carousel-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .carousel-nav-btn:hover {
+      background: var(--accent-blue);
+      color: #050b14;
+      border-color: var(--accent-blue);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .carousel-nav-btn.left { left: -16px; }
+    .carousel-nav-btn.right { right: -16px; }
+
+    .carousel-track {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 6px 4px 16px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56, 189, 248, 0.3) rgba(15, 23, 42, 0.4);
+    }
+
+    .carousel-track::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .carousel-track::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 10px;
+    }
+
+    .carousel-track::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.35);
+      border-radius: 10px;
+    }
+
+    .gallery-thumb-card {
+      flex: 0 0 250px;
+      position: relative;
+      aspect-ratio: 16 / 11;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid var(--card-border);
+      background: rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-thumb-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-blue);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .gallery-thumb-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.92);
+      transition: transform 0.4s ease, filter 0.3s ease;
+    }
+
+    .gallery-thumb-card:hover img {
+      transform: scale(1.08);
+      filter: brightness(1.05);
+    }
+
+    .gallery-thumb-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(5, 9, 20, 0.95) 20%, transparent);
+      padding: 24px 10px 8px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #e2e8f0;
+      pointer-events: none;
+      line-height: 1.3;
+    }
+
+    .gallery-hint {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* --- EXPANDED LIGHTBOX VIEWER --- */
+    .lightbox-overlay {
+      position: fixed;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(3, 6, 15, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 99999;
+      opacity: 0;
+      transition: opacity 0.25s ease-out;
+    }
+
+    .lightbox-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 94vw;
+      max-height: 92vh;
+      position: relative;
+    }
+
+    .lightbox-img-wrapper {
+      max-width: 92vw;
+      max-height: 84vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox-stage img {
+      max-width: 92vw;
+      max-height: 84vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), 0 0 1px rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .lightbox-caption {
+      color: #e2e8f0;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-top: 14px;
+      text-align: center;
+      letter-spacing: 0.01em;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    .lightbox-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f1f5f9;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+      z-index: 100000;
+    }
+
+    .lightbox-arrow:hover {
+      background: rgba(56, 189, 248, 0.25);
+      border-color: var(--accent-blue);
+      color: #ffffff;
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .lightbox-arrow.prev { left: 20px; }
+    .lightbox-arrow.next { right: 20px; }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 30px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f1f5f9;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 100000;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(239, 68, 68, 0.25);
+      border-color: #f87171;
+      color: #ffffff;
+      transform: scale(1.08);
+    }
+
+    /* Contact Form */
+    form label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      background: rgba(3, 7, 18, 0.6);
+      border: 1px solid var(--card-border);
+      color: #f8fafc;
+      border-radius: 8px;
+      font-size: 0.94rem;
+      font-family: inherit;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    form input:focus, form textarea:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      background: rgba(15, 23, 42, 0.85);
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    button[type="submit"] {
+      background: linear-gradient(135deg, #0284c7, #0ea5e9);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.92rem;
+      border: none;
+      padding: 11px 26px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+    }
+
+    button[type="submit"]:hover {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45);
+    }
+
+    .footer {
+      margin-top: 75px;
+      font-size: 0.86rem;
+      text-align: center;
+      color: var(--text-muted);
+      border-top: 1px solid var(--card-border);
+      padding-top: 25px;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 24px;
+      }
+      .hero-text h1 { font-size: 2.2rem; }
+      .hero-links { justify-content: center; }
+      .profile-pic { width: 140px; height: 140px; }
+      .carousel-nav-btn { display: none; }
+      .carousel-track { padding-bottom: 10px; }
+      .gallery-thumb-card { flex: 0 0 200px; }
+      .lightbox-arrow { width: 44px; height: 44px; font-size: 18px; }
+      .lightbox-arrow.prev { left: 8px; }
+      .lightbox-arrow.next { right: 8px; }
+      .lightbox-close { top: 16px; right: 16px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Fixed Interactive Starfield -->
+  <canvas id="space"></canvas>
+
+  <!-- Atmospheric Nebula Header Banner -->
+  <div class="nebula-header"></div>
+
+  <div class="container">
+    <!-- Hero / Profile -->
+    <header class="hero">
+      <div class="hero-text">
+        <h1>Eleni Koutsiona</h1>
+        <p class="hero-subtitle">M.Sc. Astrophysics @ Heidelberg University &middot; ESA Research Trainee</p>
+        <p class="hero-bio">
+          I am a master's student in Astrophysics at Heidelberg University (Astronomisches Rechen-Institut / ZAH) working with Prof. Dr. Dominika Wylezalek on multiphase gas, dust geometry, and feedback in high-redshift radio galaxies. Currently, I am also a Graduate Research Trainee at the European Space Agency (ESTEC) conducting reverberation mapping simulations of Active Galactic Nuclei.
+        </p>
+        <div class="hero-links">
+          <a href="https://github.com/elenikt" target="_blank" rel="noopener noreferrer" class="btn-pill">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/eleni-koutsiona-0067682a0/" target="_blank" rel="noopener noreferrer" class="btn-pill">
+            <i class="fa-brands fa-linkedin"></i> LinkedIn
+          </a>
+          <a href="https://ui.adsabs.harvard.edu/search/q=author%3A%22Koutsiona%22" target="_blank" rel="noopener noreferrer" class="btn-pill">
+            <i class="ai ai-ads"></i> NASA / ADS
+          </a>
+          <a href="Website_CV_2026.pdf" target="_blank" rel="noopener noreferrer" class="btn-pill">
+            <i class="fa-regular fa-file-pdf"></i> Curriculum Vitae
+          </a>
+        </div>
+      </div>
+      <img src="myphoto.jpeg" alt="Eleni Koutsiona" class="profile-pic" onerror="this.onerror=null; this.src='https://placehold.co/180x180/0f172a/38bdf8?text=Eleni+K.';" />
+    </header>
+
+    <!-- Research Interests -->
+    <section class="section">
+      <h2><i class="fa-solid fa-atom"></i> Research Interests</h2>
+      <div class="card">
+        <p style="color: var(--text-muted); font-size: 0.94rem;">
+          My research spans observational cosmology, multi-wavelength spectroscopy, and transient astrophysics:
+        </p>
+        <div class="pill-grid">
+          <span class="interest-pill"><i class="fa-solid fa-circle-nodes"></i> High-Redshift Galaxy Evolution</span>
+          <span class="interest-pill"><i class="fa-solid fa-fire"></i> Active Galactic Nuclei</span>
+          <span class="interest-pill"><i class="fa-solid fa-burst"></i> AGN Feedback</span>
+          <span class="interest-pill">
+            <!-- Smooth Pinwheel Spiral Galaxy SVG -->
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="vertical-align: -2px; display: inline-block;">
+              <path d="M12 12c1.5-3 5-3.5 7-1.5s1.5 5.5-1 7.5-6.5 1-9-1.5S6.5 9.5 9 6.5s7-2 10.5 1" />
+              <path d="M12 12c-1.5 3-5 3.5-7 1.5s-1.5-5.5 1-7.5 6.5-1 9 1.5 2.5 7 0 10-7 2-10.5-1" />
+              <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none" />
+            </svg>
+            Luminous Infrared Galaxies
+          </span>
+          <span class="interest-pill"><i class="fa-solid fa-cloud"></i> ISM & CGM</span>
+          <span class="interest-pill"><i class="fa-solid fa-water"></i> Multi-Wavelength (IR \& X-Ray)</span>
+          <span class="interest-pill"><i class="fa-solid fa-code"></i> Spectroscopic Data Reduction & Modeling</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Refereed Publications -->
+    <section class="section">
+      <h2><i class="fa-solid fa-book-open"></i> Refereed Publications</h2>
+      <div class="card">
+        <ul class="pub-list">
+          <li class="pub-item">
+            <div class="pub-title">The enigmatic double-peaked stripped-envelope SN 2023aew</div>
+            <div class="pub-authors">Kangas, T., et al. (including <strong>E. Koutsiona</strong>)</div>
+            <div class="pub-meta">
+              <span><strong>Astronomy & Astrophysics (A&A)</strong>, 689, A148 (2024)</span>
+              <a href="https://doi.org/10.1051/0004-6361/202449420" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> DOI
+              </a>
+              <a href="https://arxiv.org/abs/2405.02404" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-file-lines"></i> arXiv:2405.02404
+              </a>
+            </div>
+          </li>
+          <li class="pub-item">
+            <div class="pub-title">Zero-polarization candidate regions for calibration of wide-field optical polarimeters</div>
+            <div class="pub-authors">Mandarakas, N., et al. (including <strong>E. Koutsiona</strong>)</div>
+            <div class="pub-meta">
+              <span><strong>Astronomy & Astrophysics (A&A)</strong>, 684, A197 (2024)</span>
+              <a href="https://doi.org/10.1051/0004-6361/202348099" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> DOI
+              </a>
+              <a href="https://arxiv.org/abs/2312.06435" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-file-lines"></i> arXiv:2312.06435
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Compact Filmstrip / Horizontal Gallery -->
+    <section class="section">
+      <h2><i class="fa-solid fa-camera"></i> Fieldwork & Telescopes</h2>
+      
+      <div class="carousel-wrapper">
+        <button class="carousel-nav-btn left" id="scrollLeftBtn" aria-label="Scroll Left">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="carousel-nav-btn right" id="scrollRightBtn" aria-label="Scroll Right">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <div class="carousel-track" id="galleryTrack">
+          <div class="gallery-thumb-card" onclick="openLightbox(0)">
+            <img src="images/radio.jpeg" alt="20m Radio Telescope" onerror="this.onerror=null; this.src='https://placehold.co/400x280/0f172a/38bdf8?text=Radio+Telescope';" />
+            <div class="gallery-thumb-caption">20m Radio Telescope – Amanogawa</div>
+          </div>
+          <div class="gallery-thumb-card" onclick="openLightbox(1)">
+            <img src="images/okayama.jpeg" alt="Seimei 3.8m Telescope" onerror="this.onerror=null; this.src='https://placehold.co/400x280/0f172a/38bdf8?text=Seimei+3.8m';" />
+            <div class="gallery-thumb-caption">Seimei 3.8m – Okayama</div>
+          </div>
+          <div class="gallery-thumb-card" onclick="openLightbox(2)">
+            <img src="images/1.3m.jpeg" alt="1.3m Telescope" onerror="this.onerror=null; this.src='https://placehold.co/400x280/0f172a/38bdf8?text=Skinakas+1.3m';" />
+            <div class="gallery-thumb-caption">1.3m Telescope – Skinakas</div>
+          </div>
+          <div class="gallery-thumb-card" onclick="openLightbox(3)">
+            <img src="images/milkyway.jpeg" alt="Milky Way over Skinakas" onerror="this.onerror=null; this.src='https://placehold.co/400x280/0f172a/38bdf8?text=Milky+Way';" />
+            <div class="gallery-thumb-caption">Milky Way – Skinakas</div>
+          </div>
+          <div class="gallery-thumb-card" onclick="openLightbox(4)">
+            <img src="images/skinakas.jpeg" alt="Skinakas under stars" onerror="this.onerror=null; this.src='https://placehold.co/400x280/0f172a/38bdf8?text=Skinakas+Sky';" />
+            <div class="gallery-thumb-caption">Night Sky – Skinakas</div>
+          </div>
+          <div class="gallery-thumb-card" onclick="openLightbox(5)">
+            <img src="images/moon.jpg" alt="Moon through 1.3m telescope" onerror="this.onerror=null; this.src='https://placehold.co/400x280/0f172a/38bdf8?text=Moon+1.3m';" />
+            <div class="gallery-thumb-caption">Moon through 1.3m telescope</div>
+          </div>
+          <div class="gallery-thumb-card" onclick="openLightbox(6)">
+            <img src="images/myaurora.jpeg" alt="Aurora Borealis" onerror="this.onerror=null; this.src='https://placehold.co/400x280/0f172a/38bdf8?text=Aurora';" />
+            <div class="gallery-thumb-caption">Aurora Borealis – Norway</div>
+          </div>
+          <div class="gallery-thumb-card" onclick="openLightbox(7)">
+            <img src="images/dancing2.jpeg" alt="Dancing Aurora" onerror="this.onerror=null; this.src='https://placehold.co/400x280/0f172a/38bdf8?text=Dancing+Aurora';" />
+            <div class="gallery-thumb-caption">Dancing Aurora – Norway</div>
+          </div>
+          <div class="gallery-thumb-card" onclick="openLightbox(8)">
+            <img src="images/underaurora.jpeg" alt="Under the Aurora" onerror="this.onerror=null; this.src='https://placehold.co/400x280/0f172a/38bdf8?text=Under+Aurora';" />
+            <div class="gallery-thumb-caption">Under the Aurora – Norway</div>
+          </div>
+        </div>
+
+        <div class="gallery-hint">
+          <span><i class="fa-solid fa-arrows-left-right"></i> Scroll horizontally or click arrows</span>
+          <span>Click any image to expand <i class="fa-solid fa-expand"></i></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="section" id="contact">
+      <h2><i class="fa-regular fa-paper-plane"></i> Get in Touch</h2>
+      <div class="card">
+        <form action="https://formspree.io/f/xdkgrqdn" method="POST">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required placeholder="Your Name" />
+
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="_replyto" required placeholder="name@institution.edu" />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" required placeholder="Your message..."></textarea>
+
+          <button type="submit">
+            <i class="fa-regular fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2026 Eleni Koutsiona &middot; Hosted on GitHub Pages</p>
+    </footer>
+  </div>
+
+  <!-- Immersive Full-Scale Lightbox Modal -->
+  <div id="lightbox" class="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Expanded Image Viewer">
+    <div class="lightbox-arrow prev" id="prevArrow" aria-label="Previous Image">
+      <i class="fa-solid fa-chevron-left"></i>
+    </div>
+    <div class="lightbox-stage">
+      <div class="lightbox-img-wrapper">
+        <img id="lightbox-img" src="" alt="Expanded preview" />
+      </div>
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+    <div class="lightbox-arrow next" id="nextArrow" aria-label="Next Image">
+      <i class="fa-solid fa-chevron-right"></i>
+    </div>
+    <div class="lightbox-close" id="closeBtn" aria-label="Close Viewer">
+      <i class="fa-solid fa-xmark"></i>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Starfield Animation
+    const canvas = document.getElementById("space");
+    const ctx = canvas.getContext("2d");
+    let w, h, stars = [];
+
+    function initStars() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+      stars = Array.from({ length: 95 }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        radius: Math.random() * 1.1 + 0.25,
+        opacity: Math.random() * 0.7 + 0.3,
+        speed: Math.random() * 0.25 + 0.05
+      }));
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, w, h);
+      stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = `rgba(255, 255, 255, ${s.opacity})`;
+        ctx.fill();
+        s.y += s.speed;
+        if (s.y > h) s.y = 0;
+      });
+      requestAnimationFrame(drawStars);
+    }
+
+    window.addEventListener("resize", initStars);
+    initStars();
+    drawStars();
+
+    // Horizontal Carousel Scroll Controls
+    const track = document.getElementById("galleryTrack");
+    document.getElementById("scrollLeftBtn").addEventListener("click", () => {
+      track.scrollBy({ left: -320, behavior: 'smooth' });
+    });
+    document.getElementById("scrollRightBtn").addEventListener("click", () => {
+      track.scrollBy({ left: 320, behavior: 'smooth' });
+    });
+
+    // Lightbox Gallery Data
+    const galleryData = [
+      { src: 'images/radio.jpeg', caption: '20m Radio Telescope – Amanogawa Galaxy Research Center' },
+      { src: 'images/okayama.jpeg', caption: 'Seimei 3.8m Telescope – Okayama Observatory' },
+      { src: 'images/1.3m.jpeg', caption: '1.3m Telescope – Skinakas Observatory' },
+      { src: 'images/milkyway.jpeg', caption: 'Lighting up the Milky Way – Skinakas Observatory' },
+      { src: 'images/skinakas.jpeg', caption: 'Sky full of stars – Skinakas Observatory' },
+      { src: 'images/moon.jpg', caption: 'The Moon through the 1.3m telescope – Skinakas Observatory' },
+      { src: 'images/myaurora.jpeg', caption: 'Aurora Borealis – Ulvik, Norway' },
+      { src: 'images/dancing2.jpeg', caption: 'Dancing Northern Lights – Ulvik, Norway' },
+      { src: 'images/underaurora.jpeg', caption: 'Directly under the Northern Lights – Ulvik, Norway' }
+    ];
+
+    let currentIndex = 0;
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxCaption = document.getElementById("lightbox-caption");
+    const closeBtn = document.getElementById("closeBtn");
+
+    function openLightbox(index) {
+      currentIndex = index;
+      lightboxImg.src = galleryData[index].src;
+      lightboxCaption.textContent = galleryData[index].caption;
+      lightbox.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % galleryData.length;
+      lightboxImg.src = galleryData[currentIndex].src;
+      lightboxCaption.textContent = galleryData[currentIndex].caption;
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
+      lightboxImg.src = galleryData[currentIndex].src;
+      lightboxCaption.textContent = galleryData[currentIndex].caption;
+    }
+
+    document.getElementById("nextArrow").addEventListener("click", (e) => {
+      e.stopPropagation();
+      showNext();
+    });
+
+    document.getElementById("prevArrow").addEventListener("click", (e) => {
+      e.stopPropagation();
+      showPrev();
+    });
+
+    closeBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closeLightbox();
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox || e.target.classList.contains('lightbox-stage') || e.target.classList.contains('lightbox-img-wrapper')) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (lightbox.classList.contains("active")) {
+        if (e.key === "ArrowRight") showNext();
+        if (e.key === "ArrowLeft") showPrev();
+        if (e.key === "Escape") closeLightbox();
+      }
+    });
+  </script>
+</body>
+</html>
