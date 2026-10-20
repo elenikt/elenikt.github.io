@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO & Verification -->
+  <title>Eleni Koutsiona | Astrophysics Researcher</title>
+  <meta name="description" content="Personal academic website of Eleni Koutsiona, astrophysicist specializing in high-redshift galaxy evolution, AGN feedback, and observational spectroscopy.">
+  <meta name="author" content="Eleni Koutsiona">
+  <meta name="robots" content="index, follow">
+  <meta name="google-site-verification" content="FzBfX7M9LQV9f9VUuTRVNIzILlAsM_tZeAkOZ2YxdFU" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Eleni Koutsiona | Astrophysics">
+  <meta property="og:description" content="M.Sc. Researcher in Astrophysics at Heidelberg University & ESA Trainee.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://elenikt.github.io">
+  <meta property="og:image" content="https://elenikt.github.io/myphoto.jpeg">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Eleni Koutsiona",
+    "url": "https://elenikt.github.io",
+    "jobTitle": "Astrophysicist",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Heidelberg University"
+    },
+    "sameAs": [
+      "https://github.com/elenikt",
+      "https://www.linkedin.com/in/eleni-koutsiona-0067682a0/"
+    ]
+  }
+  </script>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-dark: #070a12;
+      --card-bg: rgba(255, 255, 255, 0.035);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(255, 255, 255, 0.07);
+      --accent-blue: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.15);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    canvas#space {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 8px;
+    }
+
+    a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #7dd3fc;
+    }
+
+    /* Hero Profile Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      margin-bottom: 50px;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--accent-blue);
+      font-weight: 500;
+      margin: 6px 0 16px;
+    }
+
+    .hero-bio {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .hero-socials {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 7px 16px;
+      border-radius: 999px;
+      color: var(--text-main);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.25s ease;
+    }
+
+    .btn-pill:hover {
+      background: var(--card-hover);
+      border-color: var(--accent-blue);
+      text-decoration: none;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    .profile-pic {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--card-border);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
+      flex-shrink: 0;
+    }
+
+    /* Cards & Grids */
+    .section {
+      margin-top: 50px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 22px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .pill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .interest-pill {
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      color: #e2e8f0;
+      font-size: 0.88rem;
+      padding: 6px 14px;
+      border-radius: 6px;
+    }
+
+    /* Publications List */
+    .pub-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .pub-item {
+      padding-left: 12px;
+      border-left: 2px solid var(--accent-blue);
+    }
+
+    .pub-title {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .pub-authors {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 2px 0 4px;
+    }
+
+    .pub-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .pub-meta a {
+      margin-right: 12px;
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      cursor: pointer;
+      border: 1px solid var(--card-border);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .hover-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      padding: 24px 12px 10px;
+      font-size: 0.8rem;
+      color: #e2e8f0;
+      pointer-events: none;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-overlay {
+      position: fixed;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(4, 7, 14, 0.94);
+      z-index: 9999;
+    }
+
+    .lightbox-content {
+      text-align: center;
+      max-width: 85vw;
+    }
+
+    .lightbox-content img {
+      max-width: 85vw;
+      max-height: 80vh;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+      object-fit: contain;
+    }
+
+    .lightbox-caption {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      margin-top: 14px;
+    }
+
+    .lightbox-arrow {
+      cursor: pointer;
+      font-size: 44px;
+      color: #94a3b8;
+      padding: 30px;
+      user-select: none;
+      transition: color 0.2s ease;
+    }
+
+    .lightbox-arrow:hover {
+      color: #fff;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      font-size: 36px;
+      color: #94a3b8;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .lightbox-close:hover {
+      color: #fff;
+    }
+
+    /* Contact Form */
+    form input, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 6px 0 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      color: #f1f5f9;
+      border-radius: 6px;
+      font-size: 0.92rem;
+      font-family: inherit;
+    }
+
+    form input:focus, form textarea:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    button[type="submit"] {
+      background: var(--accent-blue);
+      color: #040812;
+      font-weight: 600;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    button[type="submit"]:hover {
+      background: #7dd3fc;
+    }
+
+    .footer {
+      margin-top: 70px;
+      font-size: 0.85rem;
+      text-align: center;
+      color: var(--text-muted);
+      border-top: 1px solid var(--card-border);
+      padding-top: 25px;
+    }
+
+    @media (max-width: 680px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 20px;
+      }
+      .hero-socials {
+        justify-content: center;
+      }
+      .profile-pic {
+        width: 140px;
+        height: 140px;
+      }
+      .lightbox-arrow {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="space"></canvas>
+
+  <div class="container">
+    <!-- Hero / Profile -->
+    <header class="hero">
+      <div class="hero-text">
+        <h1>Eleni Koutsiona</h1>
+        <p class="hero-subtitle">M.Sc. Astrophysics @ Heidelberg University &middot; ESA Research Trainee</p>
+        <p class="hero-bio">
+          I am a master's student in Astrophysics at Heidelberg University (ZAH / ARI) working with Prof. Dr. Dominika Wylezalek on multi-phase gas, dust, and feedback in high-redshift radio galaxies. Currently, I am also a Graduate Trainee at the European Space Agency (ESTEC) conducting reverberation mapping simulations of Active Galactic Nuclei.
+        </p>
+        <div class="hero-socials">
+          <a href="mailto:koutsionaeleni@gmail.com" class="btn-pill"><i class="fa-regular fa-envelope"></i> Email</a>
+          <a href="https://github.com/elenikt" target="_blank" class="btn-pill"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a href="https://www.linkedin.com/in/eleni-koutsiona-0067682a0/" target="_blank" class="btn-pill"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+          <a href="Website_CV_2026.pdf" target="_blank" class="btn-pill"><i class="fa-regular fa-file-pdf"></i> Curriculum Vitae</a>
+        </div>
+      </div>
+      <img src="myphoto.jpeg" alt="Eleni Koutsiona" class="profile-pic" />
+    </header>
+
+    <!-- Research Interests -->
+    <section class="section">
+      <h2><i class="fa-solid fa-atom"></i> Research Interests</h2>
+      <div class="card">
+        <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.95rem;">
+          My research spans observational cosmology, multi-wavelength spectroscopy, and transient phenomena:
+        </p>
+        <div class="pill-grid">
+          <span class="interest-pill">High-Redshift Galaxy Evolution</span>
+          <span class="interest-pill">AGN-Driven Outflows & Feedback</span>
+          <span class="interest-pill">Dust Attenuation & LIRGs (JWST)</span>
+          <span class="interest-pill">CO Molecular Gas & ISM (IRAM NOEMA)</span>
+          <span class="interest-pill">Supernovae & Optical Transients</span>
+          <span class="interest-pill">Spectroscopic Data Reduction</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected Work & Publications -->
+    <section class="section">
+      <h2><i class="fa-solid fa-book-open"></i> Publications & Observing Allocations</h2>
+      <div class="card">
+        <ul class="pub-list">
+          <li class="pub-item">
+            <div class="pub-title">The enigmatic two-peaked stripped-envelope SN 2023aew</div>
+            <div class="pub-authors">Kangas, T., et al. (including <strong>E. Koutsiona</strong>)</div>
+            <div class="pub-meta">
+              <strong>Astronomy & Astrophysics (A&A)</strong>, 689, A148 (2024) &middot;
+              <a href="https://doi.org/10.1051/0004-6361/202449420" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> DOI</a>
+              <a href="https://arxiv.org/abs/2405.02404" target="_blank"><i class="fa-solid fa-file-lines"></i> arXiv</a>
+            </div>
+          </li>
+          <li class="pub-item">
+            <div class="pub-title">Zero-polarization candidate regions for calibration of wide-field optical polarimeters</div>
+            <div class="pub-authors">Mandarakas, N., et al. (including <strong>E. Koutsiona</strong>)</div>
+            <div class="pub-meta">
+              <strong>Astronomy & Astrophysics (A&A)</strong>, 684, A197 (2024) &middot;
+              <a href="https://doi.org/10.1051/0004-6361/202348099" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> DOI</a>
+              <a href="https://arxiv.org/abs/2312.06435" target="_blank"><i class="fa-solid fa-file-lines"></i> arXiv</a>
+            </div>
+          </li>
+          <li class="pub-item">
+            <div class="pub-title">NOEMA Observing Allocations (Co-Investigator)</div>
+            <div class="pub-authors">Programs S26CD (35.8 hrs) & S25BV (39.0 hrs) &middot; PI: Dr. U. Dudzeviciute</div>
+            <div class="pub-meta">
+              Target sample selection, optical redshift determination, and metallicity calibration for ISM CO studies at z ~ 1–2.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Photography Gallery -->
+    <section class="section">
+      <h2><i class="fa-solid fa-camera"></i> Fieldwork & Observatories</h2>
+      <div class="gallery">
+        <div class="gallery-item" onclick="openLightbox(0)">
+          <img src="images/radio.jpeg" alt="20m Radio Telescope" />
+          <div class="hover-caption">20m Radio Telescope – Amanogawa Center</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(1)">
+          <img src="images/okayama.jpeg" alt="Seimei 3.8m Telescope" />
+          <div class="hover-caption">Seimei 3.8m Telescope – Okayama Observatory</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(2)">
+          <img src="images/1.3m.jpeg" alt="1.3m Telescope" />
+          <div class="hover-caption">1.3m Telescope – Skinakas Observatory</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(3)">
+          <img src="images/milkyway.jpeg" alt="Milky Way over Skinakas" />
+          <div class="hover-caption">Milky Way – Skinakas Observatory</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(4)">
+          <img src="images/skinakas.jpeg" alt="Skinakas under stars" />
+          <div class="hover-caption">Night Sky – Skinakas Observatory</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(5)">
+          <img src="images/moon.jpg" alt="Moon through 1.3m telescope" />
+          <div class="hover-caption">Moon through the 1.3m telescope</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(6)">
+          <img src="images/myaurora.jpeg" alt="Aurora Borealis" />
+          <div class="hover-caption">Aurora Borealis – Ulvik, Norway</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(7)">
+          <img src="images/dancing2.jpeg" alt="Dancing Aurora" />
+          <div class="hover-caption">Northern Lights – Ulvik, Norway</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox(8)">
+          <img src="images/underaurora.jpeg" alt="Under the Aurora" />
+          <div class="hover-caption">Under the Aurora – Ulvik, Norway</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="section" id="contact">
+      <h2><i class="fa-regular fa-paper-plane"></i> Get in Touch</h2>
+      <div class="card">
+        <form action="https://formspree.io/f/xdkgrqdn" method="POST">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required placeholder="Your Name" />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="_replyto" required placeholder="your.email@institution.edu" />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" required placeholder="Write a message..."></textarea>
+
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2026 Eleni Koutsiona &middot; Hosted on GitHub Pages</p>
+    </footer>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox-overlay">
+    <div class="lightbox-arrow" id="prevArrow">&#10094;</div>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="Expanded preview" />
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+    <div class="lightbox-arrow" id="nextArrow">&#10095;</div>
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Starfield Animation
+    const canvas = document.getElementById("space");
+    const ctx = canvas.getContext("2d");
+    let w, h, stars = [];
+
+    function initStars() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+      stars = Array.from({ length: 90 }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        radius: Math.random() * 1.1 + 0.2,
+        opacity: Math.random() * 0.7 + 0.3,
+        speed: Math.random() * 0.3 + 0.05
+      }));
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, w, h);
+      stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = `rgba(255, 255, 255, ${s.opacity})`;
+        ctx.fill();
+        s.y += s.speed;
+        if (s.y > h) s.y = 0;
+      });
+      requestAnimationFrame(drawStars);
+    }
+
+    window.addEventListener("resize", initStars);
+    initStars();
+    drawStars();
+
+    // Lightbox Functionality
+    const galleryData = [
+      { src: 'images/radio.jpeg', caption: '20m Radio Telescope – Amanogawa Galaxy Research Center' },
+      { src: 'images/okayama.jpeg', caption: 'Seimei 3.8m Telescope – Okayama Observatory' },
+      { src: 'images/1.3m.jpeg', caption: '1.3m Telescope – Skinakas Observatory' },
+      { src: 'images/milkyway.jpeg', caption: 'Lighting up the Milky Way – Skinakas Observatory' },
+      { src: 'images/skinakas.jpeg', caption: 'Sky full of stars – Skinakas Observatory' },
+      { src: 'images/moon.jpg', caption: 'The moon through the 1.3m telescope – Skinakas Observatory' },
+      { src: 'images/myaurora.jpeg', caption: 'Aurora Borealis – Ulvik, Norway' },
+      { src: 'images/dancing2.jpeg', caption: 'Dancing Northern Lights – Ulvik, Norway' },
+      { src: 'images/underaurora.jpeg', caption: 'Directly under the Northern Lights – Ulvik, Norway' }
+    ];
+
+    let currentIndex = 0;
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxCaption = document.getElementById("lightbox-caption");
+
+    function openLightbox(index) {
+      currentIndex = index;
+      lightboxImg.src = galleryData[index].src;
+      lightboxCaption.textContent = galleryData[index].caption;
+      lightbox.style.display = "flex";
+    }
+
+    function closeLightbox() {
+      lightbox.style.display = "none";
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % galleryData.length;
+      openLightbox(currentIndex);
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
+      openLightbox(currentIndex);
+    }
+
+    document.getElementById("nextArrow").addEventListener("click", (e) => { e.stopPropagation(); showNext(); });
+    document.getElementById("prevArrow").addEventListener("click", (e) => { e.stopPropagation(); showPrev(); });
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (lightbox.style.display === "flex") {
+        if (e.key === "ArrowRight") showNext();
+        if (e.key === "ArrowLeft") showPrev();
+        if (e.key === "Escape") closeLightbox();
+      }
+    });
+  </script>
+</body>
+</html>
