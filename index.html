@@ -606,8 +606,12 @@
           <span class="interest-pill"><i class="fa-solid fa-fire"></i> Active Galactic Nuclei</span>
           <span class="interest-pill"><i class="fa-solid fa-burst"></i> AGN feedback</span>
           <span class="interest-pill">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align: -2px; display: inline-block;">
-              <path d="M12 2a10 10 0 0 0-3.5 19.37 1 1 0 1 0 .7-1.87A8 8 0 1 1 20 12a1 1 0 1 0 2 0 10 10 0 0 0-10-10zm0 4a6 6 0 0 0-2.1 11.62 1 1 0 1 0 .7-1.87A4 4 0 1 1 16 12a1 1 0 1 0 2 0 6 6 0 0 0-6-6zm0 4a2 2 0 1 0 2 2 2 2 0 0 0-2-2z"/>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="vertical-align: -2px; display: inline-block;">
+              <!-- Core bulge -->
+              <ellipse cx="12" cy="12" rx="2.5" ry="1.5" fill="currentColor" stroke="none" transform="rotate(-25 12 12)" />
+              <!-- Sweeping outer arms -->
+              <path d="M12 12c3-1.5 7-1 8.5 1s-.5 4.5-4 5.5-8 .5-11-2-2.5-5.5 0-7 7.5-1 11.5 1" transform="rotate(-20 12 12)" />
+              <path d="M12 12c-3 1.5-7 1-8.5-1s.5-4.5 4-5.5 8-.5 11 2 2.5 5.5 0 7-7.5 1-11.5-1" transform="rotate(-20 12 12)" />
             </svg>
             Luminous Infrared Galaxies
           </span>
